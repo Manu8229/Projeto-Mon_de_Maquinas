@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 
-# Função para gerar dados fictícios das máquina
+# Função para gerar dados fictícios das máquinas
 def gerar_dados():
     dados = {}
     for maquina in ["M1", "M2", "M3"]:
