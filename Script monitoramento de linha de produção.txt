@@ -1,0 +1,300 @@
+ Sistema de Monitoramento de Linha de Produção
+
+
+Contexto:
+Você foi contratado para desenvolver um sistema de monitoramento de uma linha de produção em uma fábrica 
+inteligente (Indústria 4.0). A linha de produção possui 3 máquinas (M1, M2 e M3) que trabalham em 
+sequência para produzir um produto final. Cada máquina coleta dados em tempo real sobre seu 
+desempenho, como temperatura, velocidade e taxa de defeitos.
+
+Objetivo:
+Desenvolver um programa que:
+
+Monitore o status das máquinas.
+
+Identifique se alguma máquina está operando fora dos parâmetros ideais.
+
+Tome decisões automáticas para ajustar o processo ou parar a produção, se necessário.
+
+Dados de Entrada:
+Cada máquina envia os seguintes dados:
+
+Temperatura (em °C): deve estar entre 50°C e 90°C.
+
+Velocidade (em unidades por minuto): deve estar entre 10 e 100.
+
+Taxa de defeitos (em %): deve ser menor que 5%.
+
+Regras de Negócio:
+Se uma máquina estiver fora dos parâmetros ideais:
+
+O sistema deve emitir um alerta específico para aquela máquina.
+
+A produção continua, mas o operador é notificado.
+
+Se duas ou mais máquinas estiverem fora dos parâmetros:
+
+O sistema deve parar a produção imediatamente.
+
+Emitir um alerta geral de "Parada de Emergência".
+
+Se todas as máquinas estiverem operando dentro dos parâmetros:
+
+O sistema deve exibir "Produção normal".
+
+Desafio:
+Escreva um programa em pseudocódigo ou na linguagem de sua preferência que:
+
+Receba os dados de entrada das 3 máquinas (temperatura, velocidade e taxa de defeitos).
+
+Verifique se cada máquina está dentro dos parâmetros ideais.
+
+Implemente as regras de negócio para emitir alertas ou parar a produção.
+
+Exiba o status final do sistema.
+
+Exemplo de Entrada:
+Máquina 1: Temperatura = 85°C, Velocidade = 80, Taxa de defeitos = 3%
+
+Máquina 2: Temperatura = 95°C, Velocidade = 70, Taxa de defeitos = 2%
+
+Máquina 3: Temperatura = 60°C, Velocidade = 50, Taxa de defeitos = 6%
+
+Exemplo de Saída:
+Copy
+Alerta: Máquina 1 - Temperatura alta.
+Alerta: Máquina 3 - Taxa de defeitos alta.
+Parada de Emergência: Duas ou mais máquinas fora dos parâmetros.
+Dicas:
+Use estruturas condicionais (if, else) para verificar os parâmetros de cada máquina.
+
+Use variáveis para contar quantas máquinas estão fora dos parâmetros.
+
+Use mensagens claras para informar o status do sistema.
+
+Sujestão de melhoria:
+
+seria possível acrescentar uma interface gráfica como se fosse um painel de 
+
+monitoramento em tempo real simulando dados fictícios a cada um minuto?
+
+R:Sim, é totalmente possível! Vamos expandir o exercício para incluir uma interface gráfica que simule 
+um painel de monitoramento em tempo real. Para isso, você pode usar bibliotecas como Tkinter (para Python) 
+ou React (para JavaScript), dependendo da linguagem que você prefere. Vou sugerir uma abordagem usando 
+Python com Tkinter, que é simples e eficaz para criar interfaces gráficas.
+
+Exercício Expandido: Painel de Monitoramento em Tempo Real
+Objetivo:
+Crie um painel de monitoramento que:
+
+Simule dados fictícios para as 3 máquinas a cada minuto.
+
+Exiba os dados em tempo real na interface gráfica.
+
+Aplique as regras de negócio do exercício anterior para emitir alertas ou parar a produção.
+
+Atualize o painel automaticamente a cada minuto.
+
+Passos para Implementação:
+1. Estrutura do Programa:
+Use a biblioteca Tkinter para criar a interface gráfica.
+
+Use a função after() do Tkinter para atualizar os dados a cada minuto (ou em intervalos menores, como 5 segundos, para fins de teste).
+
+Use labels (etiquetas) para exibir os dados de cada máquina e o status do sistema.
+
+2. Simulação de Dados:
+Crie uma função que gere valores aleatórios para temperatura, velocidade e taxa de defeitos dentro de faixas específicas.
+
+Para simular problemas, inclua uma pequena chance de gerar valores fora dos parâmetros ideais.
+
+3. Regras de Negócio:
+Implemente as regras do exercício anterior para emitir alertas ou parar a produção.
+
+Use cores (vermelho, amarelo, verde) para destacar o status de cada máquina.
+
+4. Interface Gráfica:
+Crie uma janela com seções para cada máquina.
+
+Exiba os dados de temperatura, velocidade e taxa de defeitos.
+
+Adicione uma área para alertas e o status geral do sistema.
+
+Como Funciona:
+O programa gera dados fictícios para as 3 máquinas a cada 5 segundos (para teste).
+
+Verifica se os dados estão dentro dos parâmetros ideais.
+
+Atualiza a interface gráfica com os novos dados e alertas.
+
+Se duas ou mais máquinas estiverem fora dos parâmetros, uma mensagem de "Parada de Emergência" é exibida.
+
+Melhorias Possíveis:
+Adicionar gráficos para visualizar tendências (usando matplotlib).
+
+Salvar os dados em um arquivo CSV para análise posterior.
+
+Implementar uma conexão com um banco de dados para armazenar os dados.
+
+Para ajustar o código e simular situações normais na maioria das vezes, podemos modificar a função gerar_dados() para que ela gere valores dentro dos parâmetros ideais na maior parte do tempo, e apenas ocasionalmente gere valores fora dos parâmetros. Isso tornará a simulação mais realista, já que, em uma linha de produção, problemas são exceções, não a regra.
+
+Ajustes no Código:
+Função gerar_dados():
+
+Ajustaremos os valores gerados para que, na maioria das vezes, estejam dentro dos parâmetros ideais.
+
+Adicionaremos uma pequena chance (por exemplo, 10%) de gerar valores fora dos parâmetros.
+
+Parâmetros Ideais:
+
+Temperatura: 50°C a 90°C.
+
+Velocidade: 10 a 100 u/min.
+
+Taxa de defeitos: 0% a 5%.
+
+Chance de Problemas:
+
+Definiremos uma probabilidade de 10% de gerar valores fora dos parâmetros.
+
+import tkinter as tk
+from tkinter import messagebox
+import random
+
+# Função para gerar dados fictícios
+def gerar_dados():
+    dados = {}
+    for maquina in ["M1", "M2", "M3"]:
+        # Gera valores normais na maioria das vezes
+        if random.random() < 0.9:  # 90% de chance de valores normais
+            temperatura = random.randint(50, 90)
+            velocidade = random.randint(10, 100)
+            defeitos = random.randint(0, 5)
+        else:  # 10% de chance de valores fora dos parâmetros
+            temperatura = random.choice([random.randint(40, 49), random.randint(91, 100)])
+            velocidade = random.choice([random.randint(5, 9), random.randint(101, 120)])
+            defeitos = random.randint(6, 10)
+
+        dados[maquina] = {
+            "temperatura": temperatura,
+            "velocidade": velocidade,
+            "defeitos": defeitos
+        }
+    return dados
+
+# Função para verificar os parâmetros
+def verificar_parametros(dados):
+    alertas = []
+    maquinas_fora = 0
+
+    for maquina, valores in dados.items():
+        if not (50 <= valores["temperatura"] <= 90):
+            alertas.append(f"{maquina} - Temperatura fora do ideal: {valores['temperatura']}°C")
+            maquinas_fora += 1
+        if not (10 <= valores["velocidade"] <= 100):
+            alertas.append(f"{maquina} - Velocidade fora do ideal: {valores['velocidade']} u/min")
+            maquinas_fora += 1
+        if valores["defeitos"] >= 5:
+            alertas.append(f"{maquina} - Taxa de defeitos alta: {valores['defeitos']}%")
+            maquinas_fora += 1
+
+    if maquinas_fora >= 2:
+        alertas.append("Parada de Emergência: Duas ou mais máquinas fora dos parâmetros!")
+        messagebox.showerror("Parada de Emergência", "A produção foi parada devido a múltiplos problemas.")
+
+    return alertas
+
+# Função para atualizar o painel
+def atualizar_painel():
+    dados = gerar_dados()
+    alertas = verificar_parametros(dados)
+
+    # Atualiza os dados na interface
+    for maquina, valores in dados.items():
+        labels[maquina]["temperatura"].config(text=f"Temperatura: {valores['temperatura']}°C")
+        labels[maquina]["velocidade"].config(text=f"Velocidade: {valores['velocidade']} u/min")
+        labels[maquina]["defeitos"].config(text=f"Defeitos: {valores['defeitos']}%")
+
+    # Atualiza os alertas
+    alertas_texto.set("\n".join(alertas) if alertas else "Produção normal")
+
+    # Agenda a próxima atualização
+    janela.after(5000, atualizar_painel)  # Atualiza a cada 5 segundos (para teste)
+
+# Interface gráfica
+janela = tk.Tk()
+janela.title("Painel de Monitoramento - Indústria 4.0")
+
+# Labels para exibir os dados
+labels = {}
+for i, maquina in enumerate(["M1", "M2", "M3"]):
+    frame = tk.Frame(janela, borderwidth=2, relief="solid")
+    frame.grid(row=0, column=i, padx=10, pady=10)
+    tk.Label(frame, text=f"Máquina {maquina}", font=("Arial", 14)).pack()
+    labels[maquina] = {
+        "temperatura": tk.Label(frame, text="Temperatura: --°C"),
+        "velocidade": tk.Label(frame, text="Velocidade: -- u/min"),
+        "defeitos": tk.Label(frame, text="Defeitos: --%")
+    }
+    for label in labels[maquina].values():
+        label.pack()
+
+# Área de alertas
+alertas_texto = tk.StringVar()
+alertas_texto.set("Produção normal")
+tk.Label(janela, text="Alertas:", font=("Arial", 14)).grid(row=1, column=0, columnspan=3)
+tk.Label(janela, textvariable=alertas_texto, fg="red").grid(row=2, column=0, columnspan=3)
+
+# Inicia a atualização do painel
+atualizar_painel()
+
+janela.mainloop()
+
+
+O que Mudou:
+Função gerar_dados():
+
+Agora, há 90% de chance de gerar valores dentro dos parâmetros ideais.
+
+Há 10% de chance de gerar valores fora dos parâmetros.
+
+Valores Fora dos Parâmetros:
+
+Temperatura: abaixo de 50°C ou acima de 90°C.
+
+Velocidade: abaixo de 10 u/min ou acima de 100 u/min.
+
+Taxa de defeitos: acima de 5%.
+
+Simulação Realista:
+
+A maioria das atualizações mostrará "Produção normal".
+
+Ocasionalmente, alertas serão exibidos quando valores estiverem fora dos parâmetros.
+
+Como Testar:
+Execute o código.
+
+Observe que, na maioria das vezes, o painel exibirá "Produção normal".
+
+Ocasionalmente, alertas serão exibidos quando valores estiverem fora dos parâmetros.
+
+Se duas ou mais máquinas estiverem com problemas, uma mensagem de "Parada de Emergência" será exibida.
+
+Exemplo de Saída:
+Situação Normal:
+Copy
+Máquina M1: Temperatura: 75°C, Velocidade: 80 u/min, Defeitos: 2%
+Máquina M2: Temperatura: 65°C, Velocidade: 90 u/min, Defeitos: 3%
+Máquina M3: Temperatura: 70°C, Velocidade: 85 u/min, Defeitos: 1%
+Alertas: Produção normal
+Situação com Problemas:
+Copy
+Máquina M1: Temperatura: 95°C, Velocidade: 80 u/min, Defeitos: 2%
+Máquina M2: Temperatura: 65°C, Velocidade: 90 u/min, Defeitos: 6%
+Máquina M3: Temperatura: 70°C, Velocidade: 85 u/min, Defeitos: 1%
+Alertas:
+M1 - Temperatura fora do ideal: 95°C
+M2 - Taxa de defeitos alta: 6%
+Parada de Emergência: Duas ou mais máquinas fora dos parâmetros!
+
